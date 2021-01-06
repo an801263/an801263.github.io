@@ -3,7 +3,11 @@ if (window.DeviceMotionEvent) {
 } else {
     console.log("no supported");
 }
-
+if(window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", process, false);
+  } else {
+    // Le navigateur ne supporte pas l'événement deviceorientation
+  }
 function process(event) {
     var x = event.accelerationIncludingGravity.x;
     var y = event.accelerationIncludingGravity.y;
