@@ -1,57 +1,43 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="utf-8" />
+    <title>TP1 exo2</title>
+          
+    <script src="script.js"  type = "text/javascript"> </script>
+
+    <style type="text/css">
+        body {
+            background-color: #AAF;
+        }
+
+        #log , #log2 {
+            width: 400px;
+            padding: 20px;
+            margin: 30px;
+            background-color: #EEE;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
 <body>
     <h1>Ex 3</h1>
+    <h1>X, Y, Z :</h1>
     <div id="log"></div>
-    <script>
-        //   function deviceOrientationListener(event) {
-        //     var c = document.getElementById("myCanvas");
-        //     var ctx = c.getContext("2d");
+    <h1>Alpha, Beta, Gamma : </h1>
+    <div id="log2"></div>
 
-        //     ctx.clearRect(0, 0, c.width, c.height);
-        //     ctx.fillStyle = "#FF7777";
-        //     ctx.font = "14px Verdana";
-        //     ctx.fillText("Alpha: " + Math.Round(event.alpha), 10, 20);
-        //     ctx.beginPath();
-        //     ctx.moveTo(180, 75);
-        //     ctx.lineTo(210, 75);
-        //     ctx.arc(180, 75, 60, 0, event.alpha * Math.PI / 180);
-        //     ctx.fill();
 
-        //     ctx.fillStyle = "#FF6600";
-        //     ctx.fillText("Beta: " + Math.round(event.beta), 10, 140);
-        //     ctx.beginPath();
-        //     ctx.fillRect(180, 150, event.beta, 90);
-
-        //     ctx.fillStyle = "#FF0000";
-        //     ctx.fillText("Gamma: " + Math.round(event.gamma), 10, 270);
-        //     ctx.beginPath();
-        //     ctx.fillRect(90, 340, 180, event.gamma);
-        //   }
-        function process(event) {
-            var x = event.accelerationIncludingGravity.x;
-            var y = event.accelerationIncludingGravity.y;
-            var z = event.accelerationIncludingGravity.z;
-            document.getElementById("log").innerHTML = "<ul><li>X : " + x + "</li><li>Y : " + y + "</li><li>Z : " + z + "</li></ul>";
-        }
-        function process(event) {
-            var alpha = event.alpha;
-            var beta = event.beta;
-            var gamma = event.gamma;
-            document.getElementById("log").innerHTML = "<ul><li>Alpha : " + alpha + "</li><li>Beta : " + beta + "</li><li>Gamma : " + gamma + "</li></ul>";
-        }
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", deviceOrientationListener);
-        } else {
-            alert("Sorry, your browser doesn't support Device Orientation");
-        }
-        if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", process, false);
-        } else {
-            alert("Sorry, your browser doesn't support Device motion");
-        }
-    </script>
 </body>
 
 </html>
