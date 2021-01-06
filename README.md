@@ -1,13 +1,10 @@
 # an801263.github.io
-https://an801263.github.io/
+[home](https://an801263.github.io/)
 
-https://an801263.github.io/ExoCarto2/index.html
+[Exo2](https://an801263.github.io/ExoCarto2/index.html)
 
-https://an801263.github.io/ExoCarto3/index.html
+[Exo3](https://an801263.github.io/ExoCarto3/index.html)
 
-https://an801263.github.io/ExoCarto4/index.html
-
-http://github.com - automatic!
+[Exo4](https://an801263.github.io/ExoCarto4/index.html)
 
 
-[GitHub](http://github.com)
