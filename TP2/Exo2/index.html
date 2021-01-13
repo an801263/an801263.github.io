@@ -2,7 +2,7 @@
 <html>
 <head>
 	
-	<title>Quick Start - Leaflet</title>
+	<title>TP2 Ex2</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-
+   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 	
 </head>
@@ -20,6 +20,7 @@
 
 
 <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <p>distance avec Marseille : </p><p id="pp"></p>
 <script>
 var options = {
   enableHighAccuracy: true,
@@ -37,20 +38,24 @@ function success(pos) {
 	var mymap = L.map('mapid').setView([32.3018217
 , -64.7603583], 3);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	 L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+   
 		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
-		zoomOffset: -1
+		zoomOffset: -1,
+            ext: 'png'
+
 	}).addTo(mymap);
 
 	L.marker([32.3018217
 , -64.7603583]).addTo(mymap)
 		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
-	L.circle([51.508, -0.11], 500, {
+	L.circle([crd.latitude
+, crd.longitude], 5000, {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5
@@ -73,7 +78,24 @@ function success(pos) {
 	}
 
 	mymap.on('click', onMapClick);
-
+    
+    function convertRad(input){
+        return (Math.PI * input)/180;
+    }
+ 
+    function dis(lat_a_degre, lon_a_degre, lat_b_degre, lon_b_degre){
+     
+        R = 6378000;
+ 
+    lat_a = convertRad(lat_a_degre);
+    lon_a = convertRad(lon_a_degre);
+    lat_b = convertRad(lat_b_degre);
+    lon_b = convertRad(lon_b_degre);
+     
+    d = R * (Math.PI/2 - Math.asin( Math.sin(lat_b) * Math.sin(lat_a) + Math.cos(lon_b - lon_a) * Math.cos(lat_b) * Math.cos(lat_a)));
+    return d;
+}
+    document.getElementById("pp").innerHTML =  dis(crd.latitude, crd.longitude,  43.2961743, 5.3699525);
 }
 
 function error(err) {
