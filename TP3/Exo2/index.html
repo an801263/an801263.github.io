@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TP3 Ex2</title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+</head>
+<body onload="animate()">
+<h1>Exo 2</h1>
+
+<style>
+    h1 {
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+</style>
+		
+    <script src="three.js"></script>
+ <script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+const formA = new THREE.BoxGeometry();
+const materialA = new THREE.MeshBasicMaterial({
+    color: 0x00ff00 
+});
+const cube = new THREE.Mesh(formA, materialA);
+scene.add(cube); 
+const formB = new THREE.SphereGeometry();
+const materialB = new THREE.MeshBasicMaterial({
+    color: 0x00ffff
+});
+materialB.map = THREE.ImageUtils.loadTexture("../Exo1/659056.jpg");
+const sphere = new THREE.Mesh(formB, materialB);
+scene.add(sphere);
+
+camera.position.z = 5;
+
+const animate = function () {
+    requestAnimationFrame(animate);
+
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    sphere.rotation.x += 0.02;
+    sphere.rotation.y += 0.02;
+    renderer.render(scene, camera);
+};
+		</script>
+
+	</body>
+</html>
