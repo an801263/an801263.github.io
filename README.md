@@ -17,7 +17,7 @@ TP2
 
 [Exo3](https://an801263.github.io/TP2/Exo3/index.html)
 
-TP2
+TP3
 
 [Exo1](https://an801263.github.io/TP3/Exo1/index.html)
 
