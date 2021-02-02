@@ -22,3 +22,7 @@ TP3
 [Exo1](https://an801263.github.io/TP3/Exo1/index.html)
 
 [Exo2](https://an801263.github.io/TP3/Exo2/index.html)
+
+[Exo2 bis](https://an801263.github.io/TP3/Exo2bis/index.html)
+
+[Exo3](https://an801263.github.io/TP3/Exo3/index.html)
