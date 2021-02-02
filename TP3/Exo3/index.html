@@ -1,53 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>TP3 Ex2</title>
-	<meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-</head>
-<body onload="animate()">
-<h1>Exo 3</h1>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="https://threejs.org/build/three.js"></script>
+		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+		<script src="https://threejs.org//examples/js/loaders/GLTFLoader.js"></script>
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			camera.position.set(2,0,40);
 
-<style>
-    h1 {
-            margin-top: 0;
-            font-family: 'Courier New', Courier, monospace;
-        }
-</style>
-		
-    <script src="../Exo2/three.js"></script>
- <script>
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-const formA = new THREE.BoxGeometry();
-const materialA = new THREE.MeshBasicMaterial({
-    color: 0x00ff00 
-});
-const cube = new THREE.Mesh(formA, materialA);
-scene.add(cube); 
-const formB = new THREE.SphereGeometry();
-const materialB = new THREE.MeshBasicMaterial({
-    color: 0x00ffff
-});
-materialB.map = THREE.ImageUtils.loadTexture("../Exo1/659056.jpg");
-const sphere = new THREE.Mesh(formB, materialB);
-scene.add(sphere);
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
 
-camera.position.z = 5;
+			const controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-const animate = function () {
-    requestAnimationFrame(animate);
+            var light = new THREE.AmbientLight(0x0c0c0c);
+            
+            // soft light 
+            scene.add(light);
+            var directionalLight = new THREE.DirectionalLight(0xfafacc, 1);
+            directionalLight.position.set(3, 0, 2);
+             scene.add(new THREE.AmbientLight(0x333333));
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    sphere.rotation.x += 0.02;
-    sphere.rotation.y += 0.02;
-    renderer.render(scene, camera);
-};
+            var light = new THREE.DirectionalLight(0xe4eef9, .7);
+          	light.position.set(12,12,8);
+          	scene.add(light);
+            scene.add(directionalLight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            document.body.appendChild(renderer.domElement);
+
+            var earthTexture = THREE.ImageUtils.loadTexture('earthmapthumb.jpg');
+            //var geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
+            geometry = new THREE.SphereGeometry(400, 40, 20);
+            var material = new THREE.MeshLambertMaterial({
+                emissive: 0x000000,
+                color: 0xffffff,
+                opacity: 1,
+                map: earthTexture
+            });
+
+            var sphere = new THREE.Mesh(geometry, material);
+            scene.add(sphere);
+            camera.position.z = 1000;
+            
+            var render = function () {
+                requestAnimationFrame(render);
+                sphere.rotation.y -= 0.002;
+                renderer.render(scene, camera);
+            };
+
+            // use this to add stars: view-source:http://threejs.org/examples/webgl_points_billboards.html
+            render();
+        
+            
 		</script>
-
 	</body>
 </html>
