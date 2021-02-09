@@ -36,3 +36,5 @@ Projet
 [Exo3](https://an801263.github.io/Projet/Exo3/index.html)
 
 [Exo4](https://an801263.github.io/Projet/Exo4/Exo4.html)
+
+[Exo4bis](https://an801263.github.io/Projet/Exo4/test.html)
