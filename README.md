@@ -35,4 +35,4 @@ Projet
 
 [Exo3](https://an801263.github.io/Projet/Exo3/index.html)
 
-[Exo4](https://an801263.github.io/Projet/Exo4/index.html)
+[Exo4](https://an801263.github.io/Projet/Exo4/Exo4.html)
