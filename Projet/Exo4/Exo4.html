@@ -76,6 +76,14 @@ north.onAdd = function(map) {
 north.addTo(mymap);
 
     
+	L.circle([crd.latitude
+, crd.longitude], 1000, {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5
+	}).addTo(mymap).bindPopup("I am a circle.");
+
+    
 }
 
 function error(err) {
