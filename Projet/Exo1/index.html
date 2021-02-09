@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TP3 Ex1</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h1>Exo 1</h1>
+
+<canvas id="myCanvas" width="300" height="277" style="border:1px solid #d3d3d3;">
+</canvas>
+    <style>
+    h1 {
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+<script>
+window.onload = function() {
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.createElement("img");
+    img.src = "compass.png";
+    ctx.drawImage(img, 1, 1, 300, 277);
+var width = window.innerWidth,
+  height = window.innerHeight;
+//need to figure out how to set the angle to the north angle 
+var angle = 0,
+  text = "N";
+
+function clear() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  c.width = width;
+  c.height = height;
+}
+function update() {
+  if(angle >= 315 || angle < 45) 
+    text = "N";
+  if(angle >= 45 && angle < 135) 
+    text = "E";
+  if(angle >= 135 && angle < 225) 
+    text = "S";
+  if(angle >= 225 && angle < 315) 
+    text = "W";
+}
+function draw() {
+  requestAnimationFrame(draw);
+  update();
+  clear();
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.lineWidth = 9;
+  ctx.strokeStyle = "#111";
+  ctx.arc(width / 2, height / 2, 250, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "#444";
+  angle <= 180 ? temp = false : temp = true;
+  ctx.arc(width / 2, height / 2, 220, -Math.PI / 2, angle * (Math.PI / 180) - Math.PI / 2, temp);
+  ctx.stroke();
+  ctx.translate(width / 2, height / 2);
+  ctx.rotate(angle * (Math.PI / 180));
+  ctx.beginPath();
+  ctx.lineWidth = 13;
+  ctx.strokeStyle = "#e11";
+  ctx.moveTo(0, -72);
+  ctx.lineTo(0, -210);
+  ctx.stroke();
+  ctx.rotate(-angle * (Math.PI / 180));
+  ctx.translate(-width / 2, -height / 2);
+  ctx.beginPath();
+  ctx.fillStyle = "#111";
+  ctx.font = "100px Courier New";
+  ctx.fillText(text, width / 2 - text.length / 2 * 50, height / 2 + 25);
+}
+
+clear();
+draw();
+
+window.addEventListener("deviceorientation", function(event) {
+  angle = event.alpha;
+});
+}
+</script>
+
+</body>
+</html>
