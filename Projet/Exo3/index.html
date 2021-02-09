@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="https://threejs.org/build/three.js"></script>
+		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+		<script src="https://threejs.org//examples/js/loaders/GLTFLoader.js"></script>
+		<script>
+			var camera, scene, renderer, geometry, material, mesh;
+
+init();
+animate();
+
+function init() {
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 500;
+    scene.add(camera);
+
+    /*geometry = new THREE.CubeGeometry(200, 200, 200);
+    material = new THREE.MeshNormalMaterial();
+
+    mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);*/
+    var geometry = new THREE.SphereGeometry( 200, 5, 5 ); 
+    var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
+    var sphere = new THREE.Mesh( geometry, material );
+    edges = new THREE.EdgesHelper( sphere, 0x00ff00 );
+    scene.add( sphere );
+    scene.add( edges );
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    document.body.appendChild(renderer.domElement);
+
+}
+
+function animate() {
+
+    requestAnimationFrame(animate);
+    render();
+
+}
+
+function render() {
+
+    //mesh.rotation.x += 0.01;
+    //mesh.rotation.y += 0.02;
+
+    renderer.render(scene, camera);
+
+} 
+		</script>
+	</body>
+</html>
