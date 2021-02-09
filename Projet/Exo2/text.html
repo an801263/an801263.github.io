@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exo3</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<style>
+    * {
+  background-color: cornflowerblue;
+}
+
+h1, h2 {
+  font-family: Lato;
+}
+#roseline {
+  stroke: #97b1db;
+  stroke-width: 5.0;
+}
+#majline {
+  stroke: #fff;
+  stroke-width: 5.0;
+}
+#upperArrow {
+  margin: 0;
+  fill: #e32;
+}
+
+#lowerArrow {
+  margin: 0;
+  fill: #eee;
+}</style>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" id="compassrose">
+<defs>
+  <symbol>
+      <line x1="40" y1="250" x2="50" y2="250" stroke-linecap="round" id="roseline" />
+  	<line x1="40" y1="250" x2="55" y2="250" id="majline" stroke-linecap="round" />
+  </symbol>
+</defs>
+  <circle cx="125" cy="40" r="10" stroke="black" stroke-width="3" fill="black" />
+</svg>
+<svg class="icon" viewBox="0 0 4 9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"> 
+    <path d="M1,1 l-0.5,4 l1,0 z" id="upperArrow"/>
+    <path d="M0.5,5 l1,0 l-0.5,4 z" id="lowerArrow"/>
+</svg>
+    
+    <script>
+    
+   // Import stylesheets
+import './style.css';
+
+// Write Javascript code!
+var lineInc = 6 ,
+majMarkDegree = 30,
+degreeInc = 30,
+compassrose = document.getElementById("compassrose"),
+xmlns = "http://www.w3.org/2000/svg",
+xlink = "http://www.w3.org/1999/xlink";
+if (lineInc > 0 ) {
+for (var i=0; i < 360; i+=lineInc) {
+  var newline = document.createElementNS(xmlns,'use');
+  if (i % majMarkDegree == 0) {	  
+    newline.setAttributeNS(xlink,'xlink:href','#majline');
+  } else {	
+    newline.setAttributeNS(xlink,'xlink:href','#roseline');
+  }
+ newline.setAttributeNS(null,'transform','rotate('+i+' 250 250)');
+  compassrose.appendChild(newline);
+}
+}
+
+var newOrientation;
+var oldOrientation = 0;
+function randomRot(newOrientation) {
+  compassrose.animate([
+    { transform: 'rotate('+ oldOrientation+'deg)' },
+		{ transform: 'rotate('+ newOrientation+'deg)' }
+		], {
+	duration: Math.abs(oldOrientation - newOrientation) * 15,
+	fill: 'forwards'
+	}).onfinish = function () {
+    randomRot(Math.floor(Math.random() * 240));
+  }
+  oldOrientation = newOrientation;
+  
+}
+newOrientation = 0;
+randomRot(Math.floor(Math.random() * 240));
+    </script>
+</body>
+</html>
